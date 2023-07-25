@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: MontserratLight;
+    src: local("Montserrat-Light"),
+      url("../fonts/Montserrat-Light.ttf") format("truetype");
+    font-display: swap;
+    font-weight: 300;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: MontserratSemiBold;
+    src: local("Montserrat-SemiBold"),
+      url("../fonts/Montserrat-SemiBold.ttf") format("truetype");
+    font-display: swap;
+    font-weight: 600;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: MontserratBlack;
+    src: local("Montserrat-Black"),
+      url("../fonts/Montserrat-Black.ttf") format("truetype");
+    font-display: swap;
+    font-weight: 900;
+    font-style: normal;
+  }
+
+  html {
+    @apply bg-black h-full;
+  }
+
+  body {
+    @apply bg-black text-white min-w-[300px] h-full;
+  }
+
+  h1 {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    @apply text-white text-3xl font-montserratBlack sm:text-4xl lg:text-5xl xl:text-6xl uppercase;
+  }
+
+  h2 {
+    @apply text-white text-2xl font-montserratBlack md:text-3xl xl:text-4xl uppercase;
+  }
+
+  h3 {
+    @apply text-white font-montserratSemiBold uppercase;
+  }
+}
+
+@layer components {
+  .view {
+    @apply max-w-4xl mx-auto px-5 xs:px-10 overflow-hidden;
+  }  
+
+  .btn{
+    @apply font-montserratBlack
+  }
+  .btn-primary{
+    @apply text-white
+  }
+  .btn-large{
+    @apply text-lg
+  }
+}
