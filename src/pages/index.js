@@ -26,14 +26,14 @@ const types = [
     color: "#2400FF",
   },
   {
-    price: 160000,
-    fee: 0.02,
+    price: 240000,
+    fee: 0.03,
     title: "Mysterious",
     color: "#FF007F",
   },
   {
-    price: 320000,
-    fee: 0.04,
+    price: 800000,
+    fee: 0.1,
     title: "Legendary",
     color: "#EB9B19",
   },
