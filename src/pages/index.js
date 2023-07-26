@@ -20,14 +20,14 @@ const types = [
     color: "#57DF5D",
   },
   {
-    price: 40000,
-    fee: 0.005,
+    price: 32000,
+    fee: 0.004,
     title: "Excellent",
     color: "#2400FF",
   },
   {
-    price: 240000,
-    fee: 0.03,
+    price: 160000,
+    fee: 0.02,
     title: "Mysterious",
     color: "#FF007F",
   },
@@ -51,10 +51,10 @@ const IndexPage = () => {
     calculator: {
       period: 12,
       usersPayOut: 0,
-      rooms: 0,
-      roomGames: 0,
-      gamePlayers: 0,
-      playerContribution: 0,
+      rooms: null,
+      roomGames: null,
+      gamePlayers: null,
+      playerContribution: null,
     },
   })
 
