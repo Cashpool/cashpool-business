@@ -23,9 +23,6 @@ module.exports = {
         montserratBlack: ["MontserratBlack"],
         montserratSemiBold: ["MontserratSemiBold"],
       },
-      aspectRatio: {
-        "video-reverse": "9 / 16",
-      },
       screens: {
         xs: "450px",
       },

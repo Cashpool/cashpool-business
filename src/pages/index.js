@@ -4,37 +4,37 @@ import Seo from "../components/seo"
 import CalculatorInput from "../components/CalculatorInput"
 import CalculatorRange from "../components/CalculatorRange"
 
-const cashpoolFee = 0.019
+const cashpoolFee = 0.018
 const maxMonthsPeriod = 120
 const types = [
   {
     price: 500,
     fee: 0.0000625,
-    title: "Useful",
+    title: "Rice",
     color: "#DED9CE",
   },
   {
     price: 4000,
     fee: 0.0005,
-    title: "Good",
+    title: "Mayonnaise",
     color: "#57DF5D",
   },
   {
     price: 32000,
     fee: 0.004,
-    title: "Excellent",
-    color: "#2400FF",
+    title: "Olive",
+    color: "#3022C2",
   },
   {
     price: 160000,
     fee: 0.02,
-    title: "Mysterious",
+    title: "BBQ",
     color: "#FF007F",
   },
   {
     price: 800000,
     fee: 0.1,
-    title: "Legendary",
+    title: "Crispy Chicken",
     color: "#EB9B19",
   },
 ]
@@ -50,7 +50,7 @@ const IndexPage = () => {
     type: null,
     calculator: {
       period: 12,
-      usersPayOut: 0,
+      usersPayOut: 1,
       rooms: null,
       roomGames: null,
       gamePlayers: null,
@@ -76,12 +76,8 @@ const IndexPage = () => {
   }
 
   // CALCULATOR INPUTS
-  // TODO sprawdzic czy inputy niee sa <0
   const handlePeriodChange = _item => {
     setCalculator({ period: _item.target.value })
-  }
-  const handleUsersPayOutChange = _item => {
-    setCalculator({ usersPayOut: _item.target.value / 100 })
   }
   const handleRoomsChange = _item => {
     setCalculator({ rooms: _item.target.value })
@@ -95,24 +91,27 @@ const IndexPage = () => {
   const handlePlayerContributionChange = _item => {
     setCalculator({ playerContribution: _item.target.value })
   }
+  const handleUsersPayOutChange = _item => {
+    setCalculator({ usersPayOut: _item.target.value })
+  }
 
   // CALCULATIONS
   const handleCalculateClick = () => {
+    const daysCount = State.calculator.period * 4 * 7
+    const averangePool =
+      State.calculator.playerContribution * State.calculator.gamePlayers
     let tempCashpoolProfit = 0
-    let tempWin = 0
-    for (let _a = 0; _a < State.calculator.period * 4 * 7; _a++) {
-      for (
-        let _b = 0;
-        _b < State.calculator.roomGames * State.calculator.rooms;
-        _b++
-      ) {
-        const pool =
-          State.calculator.playerContribution * State.calculator.gamePlayers +
-          tempWin * (1 - State.calculator.usersPayOut)
-        tempCashpoolProfit += pool * cashpoolFee
-        tempWin = pool * (1 - cashpoolFee)
+    for (let _a = 0; _a < State.calculator.rooms; _a++) {
+      let tempWin = 0
+      for (let _b = 0; _b < State.calculator.roomGames * daysCount; _b++) {
+        const tempPula = averangePool + tempWin
+        const profitCP = tempPula * cashpoolFee
+        tempCashpoolProfit += profitCP
+        tempWin =
+          _b % State.calculator.usersPayOut === 0 ? 0 : tempPula - profitCP
       }
     }
+
     setState({
       cashpoolProfit: tempCashpoolProfit,
     })
@@ -174,47 +173,44 @@ const IndexPage = () => {
               value={State.calculator.period}
             />
             <CalculatorInput
-              title={`Daily number of rooms`}
-              value={State.calculator.rooms}
-              onChange={handleRoomsChange}
-            />
-            <CalculatorInput
-              title={`Number of games in the room`}
-              value={State.calculator.roomGames}
-              onChange={handleRoomGamesChange}
-              show={State.calculator.rooms > 0}
-            />
-            <CalculatorInput
-              title={`Number of players in the room`}
-              value={State.calculator.gamePlayers}
-              onChange={handleGamePlayersChange}
-              show={
-                State.calculator.rooms > 0 && State.calculator.roomGames > 0
-              }
-            />
-            <CalculatorInput
-              title={`Contribution of a single player ($)`}
+              title={`Average player contribution ($)`}
               value={State.calculator.playerContribution}
               onChange={handlePlayerContributionChange}
+            />
+            <CalculatorInput
+              title={`Number of players in a draw`}
+              value={State.calculator.gamePlayers}
+              onChange={handleGamePlayersChange}
+              show={State.calculator.playerContribution > 0}
+            />
+            <CalculatorInput
+              title={`Daily number of draws in the room`}
+              value={State.calculator.roomGames}
+              onChange={handleRoomGamesChange}
               show={
-                State.calculator.rooms > 0 &&
-                State.calculator.roomGames > 0 &&
+                State.calculator.playerContribution > 0 &&
                 State.calculator.gamePlayers > 0
               }
             />
-            <CalculatorRange
-              min={0}
-              max={100}
-              onChange={handleUsersPayOutChange}
-              title={`${Math.round(
-                State.calculator.usersPayOut * 100
-              )}% users on average will pay out`}
-              value={State.calculator.usersPayOut * 100}
+            <CalculatorInput
+              title={`Daily number of rooms`}
+              value={State.calculator.rooms}
+              onChange={handleRoomsChange}
               show={
-                State.calculator.rooms > 0 &&
-                State.calculator.roomGames > 0 &&
+                State.calculator.playerContribution > 0 &&
                 State.calculator.gamePlayers > 0 &&
-                State.calculator.playerContribution > 0
+                State.calculator.roomGames > 0
+              }
+            />
+            <CalculatorInput
+              title={`Every how many players, the winner pays out`}
+              value={State.calculator.usersPayOut}
+              onChange={handleUsersPayOutChange}
+              show={
+                State.calculator.playerContribution > 0 &&
+                State.calculator.gamePlayers > 0 &&
+                State.calculator.roomGames > 0 &&
+                State.calculator.rooms > 0
               }
             />
             <button
@@ -259,14 +255,9 @@ const IndexPage = () => {
                 %
               </h2>
             </div>
-            {/* <div
-              className="md:tooltip"
-              data-tip={"primarily marketing, which will further raise profits"}
-            >
-              Collected for development
-              <br />
-              <h3>${largeNumber(State.cashpoolProfit)}</h3>
-            </div> */}
+            <div className="text-dark">
+              Profit from monthly subscriptions is <b>NOT</b> counted.
+            </div>
           </section>
         </>
       )}
@@ -274,6 +265,6 @@ const IndexPage = () => {
   )
 }
 
-export const Head = () => <Seo title={"Invest NFT Calculator"} />
+export const Head = () => <Seo title={"NFT Calculator"} />
 
 export default IndexPage
