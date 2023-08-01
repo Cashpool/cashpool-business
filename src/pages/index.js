@@ -50,7 +50,7 @@ const IndexPage = () => {
     type: null,
     calculator: {
       period: 12,
-      usersPayOut: 1,
+      usersPayOut: 100,
       rooms: null,
       roomGames: null,
       gamePlayers: null,
