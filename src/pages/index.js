@@ -173,15 +173,15 @@ const IndexPage = () => {
               value={State.calculator.period}
             />
             <CalculatorInput
-              title={`Average player contribution ($)`}
-              value={State.calculator.playerContribution}
-              onChange={handlePlayerContributionChange}
-            />
-            <CalculatorInput
               title={`Number of players in a draw`}
               value={State.calculator.gamePlayers}
               onChange={handleGamePlayersChange}
-              show={State.calculator.playerContribution > 0}
+            />
+            <CalculatorInput
+              title={`Player contribution to each draw ($)`}
+              value={State.calculator.playerContribution}
+              onChange={handlePlayerContributionChange}
+              show={State.calculator.gamePlayers > 0}
             />
             <CalculatorInput
               title={`Daily number of draws in the room`}
