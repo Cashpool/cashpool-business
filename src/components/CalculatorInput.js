@@ -1,16 +1,30 @@
 import React from "react"
 
-const CalculatorInput = ({ title, onChange, value, show = true }) => (
-  <div className="w-full">
-    <h3 className={`pb-1 ${!show && "opacity-10 select-none"}`}>{title}</h3>
+const CalculatorInput = ({
+  title,
+  onChange,
+  value,
+  placeholder,
+  type = "number",
+  show = true,
+  titleMode = false,
+}) => (
+  <div className="form-control w-full">
+    {title && (
+      <label className="label">
+        <span className="label-text">{title}</span>
+      </label>
+    )}
     <input
-      type="number"
+      type={type}
       min={0}
       value={value}
       onChange={onChange}
-      placeholder="Type number"
+      placeholder={placeholder || (type === "text" ? "Aa..." : "123")}
       disabled={!show}
-      className="input input-bordered w-full disabled:text-neutral max-w-[200px]"
+      className={`input  ${
+        titleMode ? "text-center" : "bg-light"
+      } w-full placeholder:text-dark disabled:text-neutral transition-all `}
     />
   </div>
 )

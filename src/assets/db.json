@@ -1,0 +1,108 @@
+{
+  "roomFee": 0.018,
+  "premiumPrice": 20,
+  "nfts": [
+    {
+      "price": 500,
+      "fee": 0.0000625,
+      "title": "Rice",
+      "color": "#DED9CE"
+    },
+    {
+      "price": 4000,
+      "fee": 0.0005,
+      "title": "Mayonnaise",
+      "color": "#57DF5D"
+    },
+    {
+      "price": 32000,
+      "fee": 0.004,
+      "title": "Olive",
+      "color": "#3022C2"
+    },
+    {
+      "price": 160000,
+      "fee": 0.02,
+      "title": "BBQ",
+      "color": "#FF007F"
+    },
+    {
+      "price": 800000,
+      "fee": 0.1,
+      "title": "Crispy Chicken",
+      "color": "#EB9B19"
+    }
+  ],
+  "translations": {
+    "en": {
+      "title": "English",
+      "pages": {
+        "notFound": {
+          "title": "404: Not Found",
+          "desc": "You just hit a route that doesn't exist... the sadness."
+        },
+        "home": {
+          "websiteName": "Calculator",
+          "pageTitle": "Welcome to the Cashpool app profit calculator",
+          "nftSelector": {
+            "title": "Choose your investment nft",
+            "itemProfit": "profit sharing",
+            "itemPrice": "Price"
+          },
+          "calculatorTitle": "Calculator",
+          "roomsGroup": {
+            "defaultGroupTitle": "New group",
+            "deleteTitle": "Delete group"
+          },
+          "calcInputs": {
+            "interval": "Calculation interval in months",
+            "roomName": "Rooms group name",
+            "gameValue": "Value of pool in the single room ($)",
+            "roomGames": "Daily number of draws in the single room",
+            "rooms": "Daily number of rooms",
+            "calculateTitle": "Calculate"
+          },
+          "results": {
+            "profitTitle": "Profit by NFT",
+            "roiTitle": "Return on investment"
+          }
+        }
+      }
+    },
+    "pl": {
+      "title": "Polski",
+      "pages": {
+        "notFound": {
+          "title": "404: Nie znaleziono",
+          "desc": "Właśnie trafiłeś na adres, który nie istnieje."
+        },
+        "home": {
+          "websiteName": "Kalkulator",
+          "pageTitle": "Witaj w kalkulatorze zysków",
+          "nftSelector": {
+            "title": "Wybierz typ inwestycyjnego NFT",
+            "itemProfit": "udział w zyskach",
+            "itemPrice": "Cena"
+          },
+          "calculatorTitle": "Kalkulator",
+          "roomsGroup": {
+            "defaultGroupTitle": "Nowa grupa",
+            "deleteTitle": "Usuń grupę"
+          },
+          "calcInputs": {
+            "interval": "Okres obliczeń w miesiącach",
+            "roomName": "Nazwa grupy pokoi",
+            "gameValue": "Średnia wartość puli w jednym pokoju ($)",
+            "roomGames": "Dzienna liczba losowań w jednym pokoju",
+            "rooms": "Dzienna liczba pokoi",
+            "calculateTitle": "Oblicz"
+          },
+          "results": {
+            "profitTitle": "Zysk z NFT",
+            "roiTitle": "Zwrot z inwestycji"
+          }
+        }
+      }
+    }
+  }
+}

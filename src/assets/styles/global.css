@@ -54,16 +54,16 @@
 
 @layer components {
   .view {
-    @apply max-w-4xl mx-auto px-5 xs:px-10 overflow-hidden;
-  }  
+    @apply max-w-6xl mx-auto px-5 xs:px-10 overflow-hidden;
+  }
 
-  .btn{
-    @apply font-montserratBlack
+  .btn {
+    @apply font-montserratBlack;
   }
-  .btn-primary{
-    @apply text-white
+  .btn-primary {
+    @apply text-white;
   }
-  .btn-large{
-    @apply text-lg
+  .btn-large {
+    @apply text-lg;
   }
 }
