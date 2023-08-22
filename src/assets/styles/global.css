@@ -33,7 +33,7 @@
   }
 
   body {
-    @apply bg-black text-white min-w-[300px] h-full;
+    @apply bg-black text-white min-w-[300px] h-full overflow-x-hidden;
   }
 
   h1 {
@@ -54,7 +54,7 @@
 
 @layer components {
   .view {
-    @apply max-w-6xl mx-auto px-5 xs:px-10 overflow-hidden;
+    @apply max-w-6xl mx-auto px-5 xs:px-10;
   }
 
   .btn {

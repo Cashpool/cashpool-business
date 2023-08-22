@@ -1,10 +1,11 @@
 import React, { useState, useRef } from "react"
-import { Link } from "gatsby"
+import { LanguageIcon } from "@heroicons/react/20/solid"
 
 import Seo from "../../components/seo"
 import CalculatorRange from "../../components/CalculatorRange"
 import db from "../../assets/db.json"
 import RoomsGroupView from "./roomsGroup"
+import Dropdown from "../../components/Dropdown"
 
 const maxMonthsPeriod = 120
 
@@ -235,35 +236,21 @@ const IndexPage = ({ pageContext: { lang } }) => {
       )}
 
       {/* LANGUAGES */}
-      <div className="dropdown">
-        <label tabIndex={0} className="btn btn-neutral m-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802"
-            />
-          </svg>
-        </label>
-        <ul
-          tabIndex={0}
-          className="dropdown-content z-[1] menu p-2 bg-light rounded-box w-52"
-        >
-          <li>
-            <Link to="/pl">Polski</Link>
-          </li>
-          <li>
-            <Link to="/en">English</Link>
-          </li>
-        </ul>
-      </div>
+      <Dropdown
+        dropdownTitle={
+          <LanguageIcon className="h-5 w-5 m-2" aria-hidden="true" />
+        }
+        items={[
+          {
+            title: "Polski",
+            url: "/pl",
+          },
+          {
+            title: "English",
+            url: "/en",
+          },
+        ]}
+      />
     </main>
   )
 }
