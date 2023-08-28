@@ -2,6 +2,7 @@ import React, { useState } from "react"
 
 import CalculatorInput from "../../components/CalculatorInput"
 import db from "../../assets/db.json"
+import { StringifyNumber } from "../../functions/StringifyNumber"
 
 const GroupRoomsView = ({ lang, refChange, deleteGroup }) => {
   const [State, updateState] = useState({
@@ -30,6 +31,9 @@ const GroupRoomsView = ({ lang, refChange, deleteGroup }) => {
     setState("gameValue", _item.target.value)
   }
 
+  // OWNER ROOM EARN
+  const roomOwnerProfit = State.gameValue * State.roomGames * 30 * 0.005
+
   return (
     <div className="space-y-8 md:space-y-8 p-8 border rounded-3xl border-light">
       <CalculatorInput
@@ -56,6 +60,10 @@ const GroupRoomsView = ({ lang, refChange, deleteGroup }) => {
         onChange={handleRoomsChange}
         show={State.gameValue > 0 && State.roomGames > 0}
       />
+      <div className="label-text">
+        {db.translations[lang].pages.home.roomsGroup.ownerRoomProfit} $
+        {roomOwnerProfit && StringifyNumber(roomOwnerProfit)}
+      </div>
       <button className="btn btn-error" onClick={deleteGroup}>
         {db.translations[lang].pages.home.roomsGroup.deleteTitle}
       </button>

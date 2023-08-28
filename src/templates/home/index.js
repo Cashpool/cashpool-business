@@ -6,13 +6,9 @@ import CalculatorRange from "../../components/CalculatorRange"
 import db from "../../assets/db.json"
 import RoomsGroupView from "./roomsGroup"
 import Dropdown from "../../components/Dropdown"
+import { StringifyNumber } from "../../functions/StringifyNumber"
 
 const maxMonthsPeriod = 120
-
-const largeNumber = number =>
-  Math.round(number)
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, " ")
 
 const IndexPage = ({ pageContext: { lang } }) => {
   const RoomsGroupRef = useRef({})
@@ -41,20 +37,16 @@ const IndexPage = ({ pageContext: { lang } }) => {
   }
   const handleCalculateClick = () => {
     if (
-      !(
-        RoomsGroupIDs.length <= 0 ||
-        (RoomsGroupIDs.length > 0 &&
-          Object.values(RoomsGroupRef.current).some(
-            _obj =>
-              Object.values(_obj).length === 0 ||
-              Object.values(_obj).some(_item => _item === (0 || null || ""))
-          ))
+      RoomsGroupIDs.length > 0 &&
+      !Object.values(RoomsGroupRef.current).some(
+        _obj =>
+          Object.values(_obj).length < 3 ||
+          Object.values(_obj).some(_item => _item === (0 || null || ""))
       )
     ) {
       const daysCount = State.interval * 4 * 7
       let tempRoomsProfit = 0
       let tempPremiumProfit = 0
-
       RoomsGroupIDs.forEach(id => {
         const dailyRoomTurnover =
           RoomsGroupRef.current[id].gameValue *
@@ -67,7 +59,6 @@ const IndexPage = ({ pageContext: { lang } }) => {
         tempPremiumProfit +=
           RoomsGroupRef.current[id].rooms * State.interval * db.premiumPrice
       })
-
       setState({
         roomsProfit: tempRoomsProfit,
         premiumProfit: tempPremiumProfit,
@@ -95,10 +86,6 @@ const IndexPage = ({ pageContext: { lang } }) => {
     newRoomsGroupIDs.splice(index, 1)
     setRoomsGroupIDs(newRoomsGroupIDs)
   }
-
-  // LANGUAGE
-  // TODO
-  const changeUrl = () => {}
 
   return (
     <main className="view flex flex-col justify-center items-center relative w-full py-12 md:pt-20 md:pb-40 space-y-12 md:space-y-20 text-center">
@@ -135,7 +122,7 @@ const IndexPage = ({ pageContext: { lang } }) => {
             <h3>
               {db.translations[lang].pages.home.nftSelector.itemPrice + " "}
               <span style={{ color: State.type.color }}>
-                ${largeNumber(State.type.price)}
+                ${StringifyNumber(State.type.price)}
               </span>
             </h3>
           </div>
@@ -157,7 +144,11 @@ const IndexPage = ({ pageContext: { lang } }) => {
             />
 
             {/* ROOMS GROUP */}
-            <div className="w-full grid sm:grid-cols-2 gap-8 py-4">
+            <div
+              className={`w-full grid sm:auto-rows-[1fr] gap-8 py-4 ${
+                RoomsGroupIDs.length === 0 ? "sm:grid-cols-1" : "sm:grid-cols-2"
+              }`}
+            >
               {RoomsGroupIDs.map(_item => (
                 <RoomsGroupView
                   key={`CALCULATOR_GROUP_ITEM_${_item}`}
@@ -212,7 +203,7 @@ const IndexPage = ({ pageContext: { lang } }) => {
               </div>
               <h2 className="pt-2">
                 $
-                {largeNumber(
+                {StringifyNumber(
                   (State.roomsProfit + State.premiumProfit) * State.type.fee
                 )}
               </h2>

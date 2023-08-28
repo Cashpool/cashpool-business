@@ -11,14 +11,14 @@
     {
       "price": 4000,
       "fee": 0.0005,
-      "title": "Mayonnaise",
+      "title": "Mayo",
       "color": "#57DF5D"
     },
     {
       "price": 32000,
       "fee": 0.004,
       "title": "Olive",
-      "color": "#3022C2"
+      "color": "#3523FF"
     },
     {
       "price": 160000,
@@ -43,22 +43,23 @@
         },
         "home": {
           "websiteName": "Calculator",
-          "pageTitle": "Welcome to the Cashpool app profit calculator",
+          "pageTitle": "Welcome to the Profit Calculator",
           "nftSelector": {
-            "title": "Choose your investment nft",
-            "itemProfit": "profit sharing",
+            "title": "Choose the type of NFT investment",
+            "itemProfit": "profit share",
             "itemPrice": "Price"
           },
           "calculatorTitle": "Calculator",
           "roomsGroup": {
             "defaultGroupTitle": "New group",
-            "deleteTitle": "Delete group"
+            "deleteTitle": "Delete group",
+            "ownerRoomProfit": "The owner of a single room earns:"
           },
           "calcInputs": {
             "interval": "Calculation interval in months",
             "roomName": "Rooms group name",
-            "gameValue": "Value of pool in the single room ($)",
-            "roomGames": "Daily number of draws in the single room",
+            "gameValue": "Average pool value in a single room ($)",
+            "roomGames": "Daily number of draws in a single room",
             "rooms": "Daily number of rooms",
             "calculateTitle": "Calculate"
           },
@@ -87,7 +88,8 @@
           "calculatorTitle": "Kalkulator",
           "roomsGroup": {
             "defaultGroupTitle": "Nowa grupa",
-            "deleteTitle": "Usuń grupę"
+            "deleteTitle": "Usuń grupę",
+            "ownerRoomProfit": "Właścicel pokoju miesięcznie zarabia:"
           },
           "calcInputs": {
             "interval": "Okres obliczeń w miesiącach",
